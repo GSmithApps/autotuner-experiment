@@ -4,12 +4,6 @@ This is the workflow and worker code.
 
 Run `temporal server start-dev` to start the server
 
-to run the worker:
-
-1. cd into the hello-world directory
-2. run `npm install`
-3. run `npm install --package-lock-only` to get the lock file
-
 ## To run the worker
 
 Run this from the hello-world directory
