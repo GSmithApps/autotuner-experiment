@@ -4,17 +4,17 @@ Run this command once:
 docker network create monitoring
 ```
 
-Then run the following from the `/monitoring` folder
+then run the following from the top level of the repo
 
 ```
+cd monitoring
 docker compose up --build
 ```
 
-prometheus is on http://localhost:9090/query
-
-grafana is on http://localhost:3000/, and both the username and password are `admin` (you can skip when it asks you to reset)
-
-you may need to add the prometheus data source to grafana. Just add the URL http://prometheus:9090
+- prometheus is on http://localhost:9090/query
+- grafana is on http://localhost:3000/
+  - the username is `admin`, and the password is `admin` (you can skip when it asks you to reset)
+- you may need to add the prometheus data source to grafana. Just add the URL http://prometheus:9090
 
 And then you can query the memory usage with
 
