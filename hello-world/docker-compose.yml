@@ -1,0 +1,22 @@
+services:
+  worker:
+    build: .
+    image: hello-world-worker:latest
+    environment:
+      - TEMPORAL_ADDRESS=host.docker.internal:7233
+    # Optional host port if you want to hit /metrics from your Mac:
+    # ports:
+    #   - "9464:9464"
+    networks:
+      monitoring:
+        aliases:
+          - worker        # 👈 Prometheus will scrape http://worker:9464
+
+    # Example limits (optional)
+    mem_limit: 4096m
+    memswap_limit: 4096m
+    cpus: 1
+
+networks:
+  monitoring:
+    external: true

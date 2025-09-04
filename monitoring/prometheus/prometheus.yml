@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: temporal_worker
+    static_configs:
+      - targets: ["worker:9464"]    # resolves via the shared network alias below
+
+  - job_name: cadvisor
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["cadvisor:8080"]
