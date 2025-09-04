@@ -1,12 +1,8 @@
-# Hello World
-
-This is the default project that is scaffolded out when you run `npx @temporalio/create@latest ./myfolder`.
-
-The [Hello World Tutorial](https://learn.temporal.io/getting_started/typescript/hello_world_in_typescript/) walks through the code in this sample.
+This is the workflow and worker code.
 
 ## Running this sample
 
-gotta run `temporal server start-dev` to start the server
+Run `temporal server start-dev` to start the server
 
 to run the worker:
 
