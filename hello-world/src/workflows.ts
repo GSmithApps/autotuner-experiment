@@ -3,10 +3,7 @@ export async function example(name: string): Promise<string> {
 
   // make a string that's 16 megs
   const size = 16_000_000;
-  let s = '';
-  for (let i = 0; i < size; i++) {
-    s += 'a';
-  }
+  const s = 'a'.repeat(size)
 
   // log the size of the string
   console.log(`Generated string of size ${s.length} bytes`);

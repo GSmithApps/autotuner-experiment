@@ -4,6 +4,7 @@ services:
     image: hello-world-worker:latest
     environment:
       - TEMPORAL_ADDRESS=host.docker.internal:7233
+      - NODE_OPTIONS=--max-old-space-size=3481
     # Optional host port if you want to hit /metrics from your Mac:
     # ports:
     #   - "9464:9464"

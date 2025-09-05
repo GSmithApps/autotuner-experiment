@@ -18,16 +18,30 @@ async function run() {
   });
 
 
-  const promises = [];
-  for (let i = 0; i < 1000; i++) {
-    promises.push(client.workflow.start(example, {
-      taskQueue: 'hello-world',
-      args: ['Temporal'],
-      workflowId: 'workflow-' + nanoid(),
-    }));
+  // Helper sleep function
+  function sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
-  
-  await Promise.all(promises);
+
+  const batchCount = 80; // Number of times to repeat the batch
+  const batchSize = 1000; // Number of workflows per batch (80000 / 80)
+  const delayMs = 250; // Delay in ms between batches
+
+  for (let batch = 0; batch < batchCount; batch++) {
+    const promises = [];
+    for (let i = 0; i < batchSize; i++) {
+      promises.push(client.workflow.start(example, {
+        taskQueue: 'hello-world',
+        args: ['Temporal'],
+        workflowId: 'workflow-' + nanoid(),
+      }));
+    }
+    await Promise.all(promises);
+    console.log(`Started batch ${batch + 1}/${batchCount} of ${batchSize} workflows`);
+    if (batch < batchCount - 1) {
+      await sleep(delayMs);
+    }
+  }
 
 }
 
