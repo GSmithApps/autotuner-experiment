@@ -28,7 +28,7 @@ async function run() {
       // Workflows are registered using a path as they run in a separate JS context.
       workflowsPath: require.resolve('./workflows'),
       // maxConcurrentWorkflowTaskExecutions: 15,
-      maxCachedWorkflows: 60000,
+      maxCachedWorkflows: 1000,
       tuner: {
         tunerOptions: {
           targetCpuUsage: .9,
