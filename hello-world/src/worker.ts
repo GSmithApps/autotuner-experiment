@@ -31,7 +31,7 @@ async function run() {
       maxCachedWorkflows: 1000,
       tuner: {
         tunerOptions: {
-          targetCpuUsage: .9,
+          targetCpuUsage: 2,
           targetMemoryUsage: .7,
         }
       }

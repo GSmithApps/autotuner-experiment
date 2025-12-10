@@ -16,7 +16,7 @@ services:
     # Example limits (optional)
     mem_limit: 4096m
     memswap_limit: 4096m
-    cpus: 1
+    cpus: 5
 
 networks:
   monitoring:
