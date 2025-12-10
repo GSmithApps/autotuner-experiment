@@ -139,7 +139,7 @@ You can also make a dashboard with the following
       "targets": [
         {
           "editorMode": "code",
-          "expr": "rate(container_cpu_usage_seconds_total{job=\"cadvisor\"}[1m])",
+          "expr": "rate(container_cpu_usage_seconds_total{job=\"cadvisor\"}[15s])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -328,7 +328,7 @@ You can also make a dashboard with the following
       "targets": [
         {
           "editorMode": "code",
-          "expr": "sum(rate(container_cpu_usage_seconds_total[1m]))\n/\nsum(machine_cpu_cores)\n*100",
+          "expr": "sum(rate(container_cpu_usage_seconds_total[15s]))\n/\nsum(machine_cpu_cores)\n*100",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -423,7 +423,7 @@ You can also make a dashboard with the following
       "targets": [
         {
           "editorMode": "code",
-          "expr": "sum by (namespace, task_queue) (resource_slots_cpu_usage)\n",
+          "expr": "# sum by (namespace, task_queue) (resource_slots_cpu_usage)\nresource_slots_cpu_usage\n",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -518,13 +518,108 @@ You can also make a dashboard with the following
       "targets": [
         {
           "editorMode": "code",
-          "expr": "sum by (container, pod)(rate(container_cpu_usage_seconds_total[1m]))\n",
+          "expr": "sum by (container, pod)(rate(container_cpu_usage_seconds_total[15s]))\n",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
       "title": "Other CPU graph",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "fex38c17nk6bka"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 8,
+      "interval": "1s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "container_memory_working_set_bytes{job=\"cadvisor\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Memory",
       "type": "timeseries"
     }
   ],
@@ -535,13 +630,13 @@ You can also make a dashboard with the following
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-20m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "New dashboard",
   "uid": "454fb0d4-bdc9-4059-971a-cfecd5fa0cbd",
-  "version": 14
+  "version": 16
 }
 ```
