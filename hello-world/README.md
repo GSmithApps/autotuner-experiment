@@ -24,4 +24,10 @@ cd hello-world
 docker compose up --build
 ```
 
+If you want to run more than one worker, try
+
+```bash
+docker compose up --build --scale worker=5 -d
+```
+
 Then if you want to make a change, you can stop the container and run it again.
