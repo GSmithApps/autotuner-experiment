@@ -23,9 +23,9 @@ async function run() {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  const batchCount = 50; // Number of times to repeat the batch
-  const batchSize = 500; // Number of workflows per batch (80000 / 80)
-  const delayMs = 250; // Delay in ms between batches
+  const batchCount = 25; // Number of times to repeat the batch
+  const batchSize = 1000; // Number of workflows per batch (80000 / 80)
+  const delayMs = 125; // Delay in ms between batches
 
   for (let batch = 0; batch < batchCount; batch++) {
     const promises = [];
